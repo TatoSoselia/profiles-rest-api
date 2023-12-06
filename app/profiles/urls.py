@@ -7,6 +7,7 @@ from profiles import views
 
 router = DefaultRouter()
 router.register('profile', views.UserView)
+router.register('feed', views.UserProfileFeedViewSet)
 
 
 urlpatterns = [

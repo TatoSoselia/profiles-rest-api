@@ -6,7 +6,7 @@ from django.contrib.auth import (
     authenticate,
 )
 from django.utils.translation import gettext as _
-
+from profiles import models
 from rest_framework import serializers
 
 
@@ -57,3 +57,12 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
+
+class ProfileFeedItemSerializer(serializers.ModelSerializer):
+    """Serializes profile feed items"""
+
+    class Meta:
+        model = models.ProfileFeedItem
+        fields = ('id', 'user_profile', 'status_text', 'created_on')
+        extra_kwargs = {'user_profile': {'read_only': True}}
